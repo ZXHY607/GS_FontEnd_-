@@ -2,20 +2,48 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>高思实验室首页</title>
-
+    <link  rel="stylesheet" type="text/css" href="css/setpage.css">
     <link  rel="stylesheet" type="text/css" href="css/MP_searchPersonList.css">
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <body>
+<script type="text/javascript">
+function delPerson(){
+    // if($(".checkbox").checkeb)
+    var checkboxs=document.getElementsByClassName("checkbox");
+    var studentId;
+    for(var i=0;i<checkboxs.length;i++){
+        if(checkboxs[i].checked){
+           // alert(checkboxs[i].parentNode.parentNode.childNodes.item(0).childNodes.item(0).nodeValue="1")
+          studentId=checkboxs[i].parentNode.nextSibling.innerHTML;
+        }
+    }
+
+     loadXMLDoc("url?studentId="+studentId,function()// 传过去被删除学生的id，要求后台重新传回当页新的数据
+        {
+          if (xmlhttp.readyState==4 && xmlhttp.status==200)
+             {
+                var item;
+                var jsonStr=xmlhttp.responseText;
+                users=JSON.parse(jsonStr);
+                for(var i=0;i<user.length;i++){
+                    item+="<tr><td><input type='checkbox' name='ids' value='3990'class="checkbox"/></td><td>"+users[i].studentId+"</td><td>"+users[i].userName+"</td><td>"+users[i].groupName+"</td><td>"+users[i].email+"</td><td>"+users[i].createDate+"</td>td>已启用</td><td><a href='MP_PersonDetails.html'>[查看]</a></td></tr>"
+                }
+                $("table").prepend(item);
+             }
+        });
+}
+</script>
 <div>
-    <button >删除</button>
-    <button >添加</button>
+    <button onclick="delPerson()" >删除</button>
+<!--     <button >添加</button> -->
     <button >启用</button>
     <button >禁用</button>
-    <select>
+  <!--     <select>
     <option>每页显示</option>
     <option>每页显示10页</option>
     <option>每页显示20页</option>
     <option>每页显示30页</option>
-    </select>
+    </select> -->
     <input >
     <button type="submit">搜索</button>
 
@@ -23,10 +51,10 @@
 <table class="tb" border="1"  cellpadding="10" cellspacing="0">
         <tr>
             <th class="check">
-                <input type="checkbox" id="selectAll" />
+               选择
             </th>
             <th>
-                用户名
+                学号
             </th>
             <th>
                 姓名
@@ -48,406 +76,13 @@
             </th>
         </tr>
         <br/>
-        <tr>
-            <td>
-                <input type="checkbox" name="ids" value="3990" />
-            </td>
-            <td>
-                Guangzhenyu
-            </td>
-            <td>
-                关振宇
-            </td>
-            <td>
-                FEP
-            </td>
-            <td>
-                1@qq.com
-            </td>
-            <td>
-                2013-10-1
-            </td>
-            <td>已启用</td>
-            <td>
-                <a href="view.jhtml?id=3990">[查看]</a>
-                <a href="edit.jhtml?id=3990">[编辑]</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="checkbox" name="ids" value="3989" />
-            </td>
-            <td>
-                LiuWenbo
-            </td>
-            <td>
-                刘文波
-            </td>
-            <td>
-                VLAB
-            </td>
-            <td>
-                2@qq.com
-            </td>
-            <td>
-                2013-9-1
-            </td>
-            <td>
-                已启用
-            </td>
-            <td>
-                <a href="view.jhtml?id=3989">[查看]</a>
-                <a href="edit.jhtml?id=3989">[编辑]</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="checkbox" name="ids" value="3988" />
-            </td>
-            <td>
-                zx
-            </td>
-            <td>
-                周旋
-            </td>
-            <td>
-                FEP
-            </td>
-            <td>
-                3@qq.com
-            </td>
-            <td>
-                2013-3-1
-            </td>
-            <td>
-               已启用
-            </td>
-            <td>
-                <a href="view.jhtml?id=3988">[查看]</a>
-                <a href="edit.jhtml?id=3988">[编辑]</a>
-            </td>
-        </tr>
-    <tr>
-        <td>
-            <input type="checkbox" name="ids" value="3990" />
-        </td>
-        <td>
-            Guangzhenyu
-        </td>
-        <td>
-            关振宇
-        </td>
-        <td>
-            FEP
-        </td>
-        <td>
-            1@qq.com
-        </td>
-        <td>
-            2013-10-1
-        </td>
-        <td>已启用</td>
-        <td>
-            <a href="view.jhtml?id=3990">[查看]</a>
-            <a href="edit.jhtml?id=3990">[编辑]</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <input type="checkbox" name="ids" value="3989" />
-        </td>
-        <td>
-            LiuWenbo
-        </td>
-        <td>
-            刘文波
-        </td>
-        <td>
-            VLAB
-        </td>
-        <td>
-            2@qq.com
-        </td>
-        <td>
-            2013-9-1
-        </td>
-        <td>
-            已启用
-        </td>
-        <td>
-            <a href="view.jhtml?id=3989">[查看]</a>
-            <a href="edit.jhtml?id=3989">[编辑]</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <input type="checkbox" name="ids" value="3988" />
-        </td>
-        <td>
-            zx
-        </td>
-        <td>
-            周旋
-        </td>
-        <td>
-            FEP
-        </td>
-        <td>
-            3@qq.com
-        </td>
-        <td>
-            2013-3-1
-        </td>
-        <td>
-            已启用
-        </td>
-        <td>
-            <a href="view.jhtml?id=3988">[查看]</a>
-            <a href="edit.jhtml?id=3988">[编辑]</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <input type="checkbox" name="ids" value="3990" />
-        </td>
-        <td>
-            Guangzhenyu
-        </td>
-        <td>
-            关振宇
-        </td>
-        <td>
-            FEP
-        </td>
-        <td>
-            1@qq.com
-        </td>
-        <td>
-            2013-10-1
-        </td>
-        <td>已启用</td>
-        <td>
-            <a href="view.jhtml?id=3990">[查看]</a>
-            <a href="edit.jhtml?id=3990">[编辑]</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <input type="checkbox" name="ids" value="3989" />
-        </td>
-        <td>
-            LiuWenbo
-        </td>
-        <td>
-            刘文波
-        </td>
-        <td>
-            VLAB
-        </td>
-        <td>
-            2@qq.com
-        </td>
-        <td>
-            2013-9-1
-        </td>
-        <td>
-            已启用
-        </td>
-        <td>
-            <a href="view.jhtml?id=3989">[查看]</a>
-            <a href="edit.jhtml?id=3989">[编辑]</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <input type="checkbox" name="ids" value="3988" />
-        </td>
-        <td>
-            zx
-        </td>
-        <td>
-            周旋
-        </td>
-        <td>
-            FEP
-        </td>
-        <td>
-            3@qq.com
-        </td>
-        <td>
-            2013-3-1
-        </td>
-        <td>
-            已启用
-        </td>
-        <td>
-            <a href="view.jhtml?id=3988">[查看]</a>
-            <a href="edit.jhtml?id=3988">[编辑]</a>
-        </td>
-    </tr>
-    <tr>
-    <td>
-        <input type="checkbox" name="ids" value="3990" />
-    </td>
-    <td>
-        Guangzhenyu
-    </td>
-    <td>
-        关振宇
-    </td>
-    <td>
-        FEP
-    </td>
-    <td>
-        1@qq.com
-    </td>
-    <td>
-        2013-10-1
-    </td>
-    <td>已启用</td>
-    <td>
-        <a href="view.jhtml?id=3990">[查看]</a>
-        <a href="edit.jhtml?id=3990">[编辑]</a>
-    </td>
-</tr>
-<tr>
-    <td>
-        <input type="checkbox" name="ids" value="3989" />
-    </td>
-    <td>
-        LiuWenbo
-    </td>
-    <td>
-        刘文波
-    </td>
-    <td>
-        VLAB
-    </td>
-    <td>
-        2@qq.com
-    </td>
-    <td>
-        2013-9-1
-    </td>
-    <td>
-        已启用
-    </td>
-    <td>
-        <a href="view.jhtml?id=3989">[查看]</a>
-        <a href="edit.jhtml?id=3989">[编辑]</a>
-    </td>
-</tr>
-<!-- <tr>
-    <td>
-        <input type="checkbox" name="ids" value="3988" />
-    </td>
-    <td>
-        zx
-    </td>
-    <td>
-        周旋
-    </td>
-    <td>
-        FEP
-    </td>
-    <td>
-        3@qq.com
-    </td>
-    <td>
-        2013-3-1
-    </td>
-    <td>
-        已启用
-    </td>
-    <td>
-        <a href="view.jhtml?id=3988">[查看]</a>
-        <a href="edit.jhtml?id=3988">[编辑]</a>
-    </td>
-</tr>
-<tr>
-    <td>
-        <input type="checkbox" name="ids" value="3990" />
-    </td>
-    <td>
-        Guangzhenyu
-    </td>
-    <td>
-        关振宇
-    </td>
-    <td>
-        FEP
-    </td>
-    <td>
-        1@qq.com
-    </td>
-    <td>
-        2013-10-1
-    </td>
-    <td>已启用</td>
-    <td>
-        <a href="view.jhtml?id=3990">[查看]</a>
-        <a href="edit.jhtml?id=3990">[编辑]</a>
-    </td>
-</tr>
-<tr>
-    <td>
-        <input type="checkbox" name="ids" value="3989" />
-    </td>
-    <td>
-        LiuWenbo
-    </td>
-    <td>
-        刘文波
-    </td>
-    <td>
-        VLAB
-    </td>
-    <td>
-        2@qq.com
-    </td>
-    <td>
-        2013-9-1
-    </td>
-    <td>
-        已启用
-    </td>
-    <td>
-        <a href="view.jhtml?id=3989">[查看]</a>
-        <a href="edit.jhtml?id=3989">[编辑]</a>
-    </td>
-</tr>
-<tr>
-    <td>
-        <input type="checkbox" name="ids" value="3988" />
-    </td>
-    <td>
-        zx
-    </td>
-    <td>
-        周旋
-    </td>
-    <td>
-        FEP
-    </td>
-    <td>
-        3@qq.com
-    </td>
-    <td>
-        2013-3-1
-    </td>
-    <td>
-        已启用
-    </td>
-    <td>
-        <a href="view.jhtml?id=3988">[查看]</a>
-        <a href="edit.jhtml?id=3988">[编辑]</a>
-    </td>
-</tr> -->
+       <tr><td><input type="checkbox" name="ids" value="3990" class="checkbox" /></td><td> Guangzhenyu</td><td> 关振宇</td><td> FEP</td><td> 1@qq.com</td><td> 2013-10-1</td><td>已启用</td><td><a href="MP_PersonDetails.html">[查看]</a></td></tr>
+
 
     </table>
 <br/>
-    <div>
-        &nbsp&nbsp&nbsp&nbsp&nbsp
+    <div id="setpage">
+<!--         &nbsp&nbsp&nbsp&nbsp&nbsp
         <a href="">首页</a>&nbsp
         <a href="">上一页</a>
         <a href="">下一页</a>&nbsp
@@ -461,8 +96,32 @@
             <option>第1页</option>
             <option>第2页</option>
             <option>第3页</option>
-        </select>
+        </select> -->
     </div>
+
+<script type="text/javascript"src="js/setpage.js"></script>
+<script type="text/javascript">
+var users;
+    function reloadpage(target)//target第几页
+   {
+     loadXMLDoc("url?page="+target,function()
+        {
+          if (xmlhttp.readyState==4 && xmlhttp.status==200)
+             {
+                var item;
+                var jsonStr=xmlhttp.responseText;
+                users=JSON.parse(jsonStr);
+                for(var i=0;i<user.length;i++){
+                    item+="<tr><td><input type='checkbox' name='ids' value='3990'class="checkbox"/></td><td>"+users[i].studentId+"</td><td>"+users[i].userName+"</td><td>"+users[i].groupName+"</td><td>"+users[i].email+"</td><td>"+users[i].createDate+"</td>td>已启用</td><td><a href='MP_PersonDetails.html'>[查看]</a></td></tr>"
+                }
+                $("table").prepend(item);
+             }
+        });
+   }
+
+setpage(); 
+
+</script>
 
 </body>
 </head>
